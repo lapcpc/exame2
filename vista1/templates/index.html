@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Bienvenido al museo</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Registrar entrada</button>
+</form>
+<h2>
+    Registros
+</h2>
+{% for c in registroo %}
+        
+        {{c.email}}
+        {{c.temperatura}}
+        {{c.oxigenacion}}
+        {{c.timestamp_in}}
+        {% if c.temperatura > 37.5 %}
+            <p>Positivo</p> 
+        {% elif c.oxigenacion < 90 %}
+            <p>Positivo</p>
+        {% else %}
+            <p>Negativo</p>
+        {% endif %}
+        
+{% endfor %}
+{% endblock %}
